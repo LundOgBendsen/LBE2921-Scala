@@ -9,7 +9,8 @@ object class_hierarchies {;import org.scalaide.worksheet.runtime.library.Workshe
   val twoLeaf = oneLeaf include 7;System.out.println("""twoLeaf  : class_hierarchies.IntSet = """ + $show(twoLeaf ));$skip(36); 
   val threeLeaf = twoLeaf include 1;System.out.println("""threeLeaf  : class_hierarchies.IntSet = """ + $show(threeLeaf ));$skip(52); val res$2 = 
   (oneLeaf include 42) union (threeLeaf include 17);System.out.println("""res2: class_hierarchies.IntSet = """ + $show(res$2));$skip(19); val res$3 = 
-  empty contains 1;System.out.println("""res3: Boolean = """ + $show(res$3))}
+  empty contains 1;System.out.println("""res3: Boolean = """ + $show(res$3));$skip(21); val res$4 = 
+  oneLeaf contains 5;System.out.println("""res4: Boolean = """ + $show(res$4))}
   
   
 }

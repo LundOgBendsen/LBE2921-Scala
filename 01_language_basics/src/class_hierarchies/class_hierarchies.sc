@@ -11,6 +11,7 @@ object class_hierarchies {
   (oneLeaf include 42) union (threeLeaf include 17)
                                                   //> res2: class_hierarchies.IntSet = ((.,1,.),5,(.,7,(.,17,(.,42,.))))
   empty contains 1                                //> res3: Boolean = false
+  oneLeaf contains 5
   
   
 }
