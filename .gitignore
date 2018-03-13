@@ -8,3 +8,4 @@ RemoteSystemsTempFiles
 *.*#
 **/*.cache-main
 **/bin
+/.recommenders/
