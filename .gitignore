@@ -9,3 +9,5 @@ RemoteSystemsTempFiles
 **/*.cache-main
 **/bin
 /.recommenders/
+target
+project
