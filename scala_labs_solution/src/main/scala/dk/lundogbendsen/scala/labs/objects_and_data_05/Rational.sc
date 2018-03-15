@@ -1,38 +1,29 @@
-package dk.lundogbendsen.scala.labs.objects_and_data_05
+package objects_and_data_05
 
 object Rational {
-// Check that you can create a rational
-//  val x = new Rational(1,3)
- 
- //Create fields, numerator and denominator. Check that you can access the fields
+  val x = new Rational(1,3)                       //> x  : objects_and_data_05.Rational = 1/3
   //x.numerator
  // x.denominator
   
-  //Check that you can add
-  //val z = new Rational(1,2)
-  //val y = x.add(z)
+  val z = new Rational(1,2)                       //> z  : objects_and_data_05.Rational = 1/2
   
-  // Check that you can use negate
-  // val negy = y.negative
+  val y = x.add(z)                                //> y  : objects_and_data_05.Rational = 5/6
   
-  // check that result is correct
-  // val res = negy add(z) add(x)
+  val negy = y.negative                           //> negy  : objects_and_data_05.Rational = -5/6
   
-  //Check that you can substract
-  //y.substract(z)
+  val res = negy add(z) add(x)                    //> res  : objects_and_data_05.Rational = 0/1
   
-  //check that smalle than is correct
-  //x < z
+  y.substract(z)                                  //> res0: objects_and_data_05.Rational = 1/3
   
-  // check that max is correct
-  // x.max(z)
+  x < z                                           //> res1: Boolean = true
+  
+  x.max(z)                                        //> res2: objects_and_data_05.Rational = 1/2
   
   //uncomment to see precondition error!
   //val strange = new Rational(1,0)
  // strange.add(strange)
  
- // check that unary constructor works
- //val integer = new Rational(1)
+ val integer = new Rational(1)                    //> integer  : objects_and_data_05.Rational = 1/1
   
   
 }
@@ -43,20 +34,24 @@ class Rational(x: Int, y: Int) {
 //greatestCommonDenominator
   private def gcd(a: Int, b:Int):Int = if(b==0)a else gcd(b, a%b)
   
-	 //val numerator =
-	 
- 	// Implement unary constructor
-  //def this ...
+	val g = gcd(x,y)
+  val numerator = x/g
+  val denominator = y/g
   
-  def add( that: Rational): Rational = ???
+  def this(x:Int) = this(x,1)
   
-  def negative():Rational = ???
   
-  def substract(that:Rational):Rational = ???
+  def add( that: Rational): Rational = {
+  	 	 new Rational( numerator*that.denominator + that.numerator*denominator, denominator*that.denominator)
+  }
   
-  def <(that:Rational):Boolean = ???
+  def negative():Rational = new Rational( -numerator, denominator)
   
-  def max(that: Rational): Rational = ???
+  def substract(that:Rational):Rational = add(that.negative)
   
-  override def toString() = ???
+  def <(that:Rational):Boolean = numerator*that.denominator < that.numerator*denominator
+  
+  def max(that: Rational): Rational = if(this<that) that else this
+  
+  override def toString() = numerator + "/" + denominator
 }
