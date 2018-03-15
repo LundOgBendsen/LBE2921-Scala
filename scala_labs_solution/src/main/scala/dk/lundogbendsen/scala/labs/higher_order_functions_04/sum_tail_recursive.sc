@@ -1,4 +1,5 @@
-package hello
+package dk.lundogbendsen.scala.labs.higher_order_functions_04
+
 
 object sum_tail_recursive {
 
@@ -8,8 +9,10 @@ object sum_tail_recursive {
       else loop(a + 1, acc + f(a))
     }
     loop(a, 0)
-  }                                               //> sum: (f: Int => Int)(a: Int, b: Int)Int
+  }
   
-  sum( (i)=>i)(1, 4)                              //> res0: Int = 10
+  sum( (i)=>i)(1, 4)
+  
+  sum( i => i*i)(3,4)
 
 }
