@@ -1,5 +1,6 @@
 package polymorphism_07
 
+// Discuss - when do we use a trait, and when do we use an abstract class?
 trait List[T] {
     def isEmpty:Boolean
     def head: T
@@ -25,8 +26,9 @@ object use  extends App{
 
 
 // a function for each accepted definition type
+// the companion object, useful for creating instances of class
 object List {
-  //List(1,2) = List.apply(1,2)
+  // this is the secret juice, that let us use (arg) notation, ie List(1,2) = List.apply(1,2)
   def apply[T](x1: T, x2: T): List[T] = new Cons(x1, new Cons(x2, new Nil))
 }
 
