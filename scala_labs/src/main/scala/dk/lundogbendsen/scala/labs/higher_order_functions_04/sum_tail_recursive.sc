@@ -4,6 +4,7 @@ object sum_tail_recursive {
 
 // implement sum i=a to b f(n) ...
  // define a method sum, with 2 parameter lists, one for a function literal
+  //@annotation.tailrec
   def sum = ???                                   //> sum: => Nothing
   
   // find sum 1+ .. + 10
