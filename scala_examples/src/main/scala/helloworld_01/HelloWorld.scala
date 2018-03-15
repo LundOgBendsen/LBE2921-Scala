@@ -1,4 +1,4 @@
-package class_hierarchies
+package helloworld_01
 
 object helloWorld {
   

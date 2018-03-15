@@ -1,4 +1,4 @@
-package polymorphism
+package polymorphism_07
 
 trait List[T] {
     def isEmpty:Boolean

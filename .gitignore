@@ -11,3 +11,4 @@ RemoteSystemsTempFiles
 /.recommenders/
 target
 project
+**/.worksheet
