@@ -1,6 +1,6 @@
 package types_and_pattern_matching_08
 
-object PatternMatching {
+object CaseClassesPatternMatching {
   val kitty = Cat("Simba", "Norwegian forest cast", true)
                                                   //> kitty  : types_and_pattern_matching_08.Cat = Cat(Simba,Norwegian forest cast
                                                   //| ,true)
