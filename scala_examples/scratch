@@ -1,0 +1,23 @@
+
+
+
+
+// Final example:
+
+import scala.collection.immutable.TreeSet
+
+// Extract all the unique characters (respecting case) into a list.
+def uniques(arg: String): List[Char] = uniques(List(arg))
+def uniques(arg: String, args: String*): List[Char] = uniques(arg +: (args.toSeq))
+def uniques(args: Seq[String]): List[Char] =
+  args.flatMap(_.toList) // Flatten the sequence of strings to single list of chars.
+      .sortWith(_ < _)   // Sort alphanumerically then "fold" the elements into a set
+      .foldLeft(new TreeSet[Char])((set,s) => set + s)
+      .toList            // convert to the final list
+
+val expected15 = List('N', 'T', 'e', 'h', 'i', 'm', 'o', 's', 't', 'w'))
+assert( uniques("Now", "is", "the", "Time") == expected15)
+assert(uniques("Now" :: "is" :: "the" :: "Time" :: Nil) == expected15)
+assert(uniques(List("Now", "is", "the", "Time")) == expected15)
+		
+
