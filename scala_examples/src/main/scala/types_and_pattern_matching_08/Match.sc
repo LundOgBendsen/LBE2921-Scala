@@ -13,30 +13,21 @@ object Match {
     case _ => "many"
   }                                               //> isHowMany: (n: Int)String
   
-   val x: Int = Random.nextInt(10)                //> x  : Int = 1
-   val says =  isHowMany(x)                       //> says  : String = one
+   val x: Int = Random.nextInt(10)                //> x  : Int = 4
+   val says =  isHowMany(x)                       //> says  : String = many
  
   // appreciate how many unicorns were saved here
    (1 to 9).map( Random.nextInt ).map( isHowMany ).foreach( println )
                                                   //> zero
-                                                  //| one
+                                                  //| zero
                                                   //| two
                                                   //| two
-                                                  //| one
+                                                  //| many
                                                   //| zero
                                                   //| many
                                                   //| many
-                                                  //| two
+                                                  //| many
 
 
-	val r = List(1, 2, 3) match {
-      case x :: y :: Nil ⇒ y // only matches a list with exactly two items
-      case _             ⇒ 0
-    }                                             //> r  : Int = 0
-    
-     val q = List(1, 2, 3) match {
-      case x :: y :: z :: tail ⇒ tail
-      case _                   ⇒ 0
-    }                                             //> q  : Any = List()
 
 }
