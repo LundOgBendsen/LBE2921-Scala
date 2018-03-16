@@ -31,4 +31,16 @@ object Collections {
 
   for (file <- filesHere if file.getName.endsWith(".scala"))
     println(file)
+    
+    import scala.io.Source
+  //multiple generators, multiple loops
+   def grep(pattern: String) =
+      for (
+        file <- filesHere
+        if file.getName.endsWith(".scala");
+        line <- Source.fromFile(file).getLines
+        if line.trim.matches(pattern)
+      ) println(file + ": " + line.trim)          //> grep: (pattern: String)Unit
+  
+    grep(".*Collection.*")
 }
