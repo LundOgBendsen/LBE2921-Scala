@@ -23,13 +23,13 @@ object Collections {
     case _ ⇒ 0
   }                                               //> q  : Any = List()
 
+// example of for-comprehension with
   val filesHere = (new java.io.File(".")).listFiles
                                                   //> filesHere  : Array[java.io.File] = Array(./eclipse, ./hs_err_pid3653.log)
-
   for (file <- filesHere) println(file)           //> ./eclipse
                                                   //| ./hs_err_pid3653.log
 
-  for (file <- filesHere if file.getName.endsWith(".scala"))
+  for (file <- filesHere if file.getName.endsWith("./eclipse"))
     println(file)
     
     import scala.io.Source

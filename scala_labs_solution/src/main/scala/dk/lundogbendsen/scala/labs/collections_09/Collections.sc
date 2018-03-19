@@ -16,7 +16,7 @@ object Collections {
   val expected3 = list.head                       //> expected3  : String = now
   assert(expected3 == "now")
 
-  // Return the tail, all but the first element
+  // Return the tail of the list
   val expected4 = list.tail                       //> expected4  : List[String] = List(is, the, time)
   assert(expected4 == List("is", "the", "time"))
 
@@ -28,11 +28,10 @@ object Collections {
   val expected6 = list sortBy (_.length)          //> expected6  : List[String] = List(is, now, the, time)
   assert(expected6 == List("is", "now", "the", "time"))
 
-  // "Partition" the collection elements into two collections,
+ // Return a tupple with two collections,
   // where one has the words that start with "t" and the other
   // collection has the rest of the words.
   val expected7 = list partition (_(0) == 't')    //> expected7  : (List[String], List[String]) = (List(the, time),List(now, is))
-                                                  //| 
   assert( expected7 == Tuple2(List("the", "time"),List("now", "is")))
 
   // Return a collection of tupples (word, length)
@@ -44,10 +43,7 @@ object Collections {
   val expected9 = list mkString ("[", "-", "]")   //> expected9  : String = [now-is-the-time]
   assert( expected9 == "[now-is-the-time]")
 
-  // Map the "names" above to a 3-element list where each name , is in the format "first last".
-  // The anonymous function passed to map() can be written several ways. Note that
-  // the anonymous function expects a Tuple2 argument for the key and value, OR
-  // it can also be written as PartialFunction, which we'll discuss later:
+  // Map the "names" above to a 3-element list where each name , is in the format "first last"
   val expected10 = names map { case (key, value) => s"$key $value" }
                                                   //> expected10  : scala.collection.immutable.Iterable[String] = List(Martin Ode
                                                   //| rsky, Joe Armstrong, Simon Peyton Jones)
@@ -63,37 +59,35 @@ object Collections {
                                                   //| .Map[Int,String]] = Map(2 -> Map(2 -> e), 1 -> Map(1 -> c), 3 -> Map(3 -> d
                                                   //| ))
 
+
    assert( expected11 == Map(
   1 -> Map(1 -> "a", 1 -> "c"),
   2 -> Map(2 -> "b", 2 -> "e"),
   3 -> Map(3 -> "d")
 ))
 
+  // which element from the map do you have to retrieve to match the next assertion ? (Note the Some)
+  val expected12 = expected11.get(1)              //> expected12  : Option[scala.collection.immutable.Map[Int,String]] = Some(Map
+                                                  //| (1 -> c))
+	assert( expected12 == Some(Map(1 -> "a", 1 -> "c")) )
 
-  // To anticipate the next section, note what happens when we retrieve
-  // map elements:
+//which retrieval matches this assertion?
+  val expected13 = expected11.get(0)              //> expected13  : Option[scala.collection.immutable.Map[Int,String]] = None
+  assert( expected13 == None)
 
-  val expected12 = expected11                     //> expected12  : scala.collection.immutable.Map[Int,scala.collection.immutable
-                                                  //| .Map[Int,String]] = Map(2 -> Map(2 -> e), 1 -> Map(1 -> c), 3 -> Map(3 -> d
-                                                  //| ))
-  //assert( expected12 == Some(Map(1 -> "a", 1 -> "c")) )
-
-  val expected13 = expected11                     //> expected13  : scala.collection.immutable.Map[Int,scala.collection.immutable
-                                                  //| .Map[Int,String]] = Map(2 -> Map(2 -> e), 1 -> Map(1 -> c), 3 -> Map(3 -> d
-                                                  //| ))
-  //assert( expected13 == None)
-
-  val expected14 = expected11                     //> expected14  : scala.collection.immutable.Map[Int,scala.collection.immutable
-                                                  //| .Map[Int,String]] = Map(2 -> Map(2 -> e), 1 -> Map(1 -> c), 3 -> Map(3 -> d
-                                                  //| ))
-  //assert( expected14 == Map(4 -> "unknown"))
+//match the next assertion with a single call to the map api
+  val expected14 = expected11.getOrElse(4, Map(4 -> "unknown"))
+                                                  //> expected14  : scala.collection.immutable.Map[Int,String] = Map(4 -> unknown
+                                                  //| )
+assert( expected14 == Map(4 -> "unknown"))
 
   // Extract all the unique characters (respecting case) into a list.
- // def uniques(args): List[Char] = ...
+  val uniques = List("Now", "is", "the", "Time").flatMap(_.toList).toSet.toList.sortWith( _ < _)
+                                                  //> uniques  : List[Char] = List(N, T, e, h, i, m, o, s, t, w)
 	
 	val expected15 = List('N', 'T', 'e', 'h', 'i', 'm', 'o', 's', 't', 'w')
                                                   //> expected15  : List[Char] = List(N, T, e, h, i, m, o, s, t, w)
-//	assert( uniques(List("Now", "is", "the", "Time")) == expected15)
+	assert( uniques == expected15)
 
 
 }

@@ -14,3 +14,4 @@ project
 **/.worksheet
 */.gradle
 .gradle
+*/build/*
